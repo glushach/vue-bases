@@ -12,8 +12,13 @@ const App = {
       this.inputValue = event.target.value;
     },
     addHewNote() {
-      this.notes.push(this.inputValue);
-      this.inputValue = '';
+      if (this.inputValue) {
+        this.notes.push(this.inputValue);
+        this.inputValue = '';
+      }
+    },
+    toUpperCase(item) {
+      return item.toUpperCase();
     },
     deleteNote(idx) {
       this.notes = this.notes.filter((item, i) => i !== idx);
