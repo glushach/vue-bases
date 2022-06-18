@@ -10,6 +10,10 @@ const App = {
   methods: {
     inputChangeHandler(event) {
       this.inputValue = event.target.value;
+    },
+    addHewNote() {
+      this.notes.push(this.inputValue);
+      this.inputValue = '';
     }
   }
 };
