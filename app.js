@@ -23,6 +23,12 @@ const App = {
     deleteNote(idx) {
       this.notes = this.notes.filter((item, i) => i !== idx);
     }
+  },
+  computed: { // all methods must return value and mast have modify variables. these are getters, setters
+    doubleCountComputed() {
+      console.log('doubleCountComputed')
+      return this.notes.length * 2;
+    },
   }
 };
 
