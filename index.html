@@ -13,32 +13,8 @@
   </head>
   <body>
   
-  <div class="container" id="app" v-cloak> <!-- чтобы при перезагрузке страницы она не дергалась, при рендеринге, когда Vue еще не успело присоединиться. Директиву нужно настроить-->
-    <div class="card center">
-      <div v-html="myHtml"></div> <!-- вставка html в страницу -->
-      
-      <div class="form-control">
-        <input type="text" @keyup.enter.shift="addItem($event)" ref="myInput"> <!-- enter.shift for Enter + Shift -->
-      </div>
-      <ul class="list" v-if="items.length">
-        <li
-            class="list-item"
-            v-for="(item, idx) in items"
-            @click="remove(idx), log(item)"
-            :key="item"
-        >
-          <!-- Коментарии внутри открывающего тега писать НЕЛЬЗЯ -->
-          <strong>{{ item}}</strong>&nbsp;
-          <input type="text" @click.prevent.stop> <!-- prevent - replace eventPreventDefault; stop - replace stopPropagation -->
-        </li>
-        
-<!--        <li class="list-item" v-for="(value, key) in person">-->
-<!--          <strong>{{key}}</strong> {{ value }}-->
-<!--        </li>-->
-        
-      </ul>
-      <h3 v-show="items.length === 0">Элементов нет</h3> <!-- елемент в верстке присутсвует, но скрытый. А вот v-if v-if-else v-else вырезает элементы с верстки -->
-    </div>
+  <div class="container pt-5" id="app" v-cloak> <!-- чтобы при перезагрузке страницы она не дергалась, при рендеринге, когда Vue еще не успело присоединиться. Директиву нужно настроить-->
+  
   </div>
 
     <script src="https://unpkg.com/vue@next"></script>
