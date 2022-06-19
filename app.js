@@ -13,6 +13,11 @@ Vue.createApp({
       lastName: 'Solomonic',
       age: 27
     },
-    items: [1, 2, 3, 4, 5]
-  })
+    items: [1, 2, 3, 4, 5, 6]
+  }),
+  computed: {
+    eventItems() {
+      return this.items.filter(i => i % 2 === 0);
+    }
+  }
 }).mount('#app');
