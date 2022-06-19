@@ -8,6 +8,7 @@ const app = Vue.createApp({
   },
   methods: {
     changeTitle() {
+      console.log(this)
       this.title = 'Изменили!'
     }
   },
@@ -32,3 +33,27 @@ const app = Vue.createApp({
 })
 
 app.mount('#app');
+
+const data = {
+  title: 'Vue 3',
+  message: 'Заголовок это: Vue 3'
+}
+
+const proxy = new Proxy(data, {
+  // get(target, p) {
+  //   console.log(target);
+  //   console.log(p);
+  // },
+  set(target, key, value) { // для того чтобы получить реактивность
+    if (key === 'title') {
+      target.message = 'Заголовок это: ' + value
+    }
+    target[key] = value
+  }
+}); // второй параметр устанавливает ловушки на data
+
+proxy.title = 'Angular 10';
+// таким образом, мы нигде message не меняли, то оно изменилось после изменения title
+// Так реализованная реактивность через ловушку Proxy
+
+console.log(proxy);
