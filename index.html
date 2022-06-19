@@ -21,8 +21,11 @@
             class="list-item"
             v-for="(item, idx) in items"
             @click="items.splice(idx, 1)"
+            :key="item"
         >
-          <strong>{{ item}}</strong>
+          <!-- Коментарии внутри открывающего тега писать НЕЛЬЗЯ -->
+          <strong>{{ item}}</strong>&nbsp;
+          <input type="text" @click.prevent.stop> <!-- prevent - replace eventPreventDefault; stop - replace stopPropagation -->
         </li>
         
 <!--        <li class="list-item" v-for="(value, key) in person">-->
