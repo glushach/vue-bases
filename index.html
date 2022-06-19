@@ -16,10 +16,14 @@
   <div class="container" id="app" v-cloak> <!-- чтобы при перезагрузке страницы она не дергалась, при рендеринге, когда Vue еще не успело присоединиться. Директиву нужно настроить-->
     <div class="card center">
       <div v-html="myHtml"></div> <!-- вставка html в страницу -->
+      
+      <div class="form-control">
+        <input type="text" @keyup.enter.shift="addItem($event)" ref="myInput"> <!-- enter.shift for Enter + Shift -->
+      </div>
       <ul class="list" v-if="items.length">
         <li
             class="list-item"
-            v-for="(item, idx) in eventItems"
+            v-for="(item, idx) in items"
             @click="items.splice(idx, 1)"
             :key="item"
         >
