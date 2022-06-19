@@ -24,7 +24,7 @@
         <li
             class="list-item"
             v-for="(item, idx) in items"
-            @click="items.splice(idx, 1)"
+            @click="remove(idx), log(item)"
             :key="item"
         >
           <!-- Коментарии внутри открывающего тега писать НЕЛЬЗЯ -->
