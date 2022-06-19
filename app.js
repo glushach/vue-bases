@@ -29,10 +29,38 @@ const app = Vue.createApp({
           onClick: this.changeTitle
         }, 'Изменить')
       ])
+  },
+  beforeCreate() {
+    console.log('beforeCreate')
+  },
+  created() {
+    console.log('created')
+  },
+  beforeMount() {
+    console.log('beforeMount')
+  },
+  mounted() {
+    console.log('mounted')
+  },
+  beforeUnmount() {
+    console.log('beforeUnmount')
+  },
+  unmounted() {
+    console.log('unmounted')
+  },
+  beforeUpdate() {
+    console.log('beforeUpdate')
+  },
+  updated() {
+    console.log('updated')
   }
 })
 
 app.mount('#app');
+
+// setTimeout(() => {
+//   app.unmount();
+// }, 2000);
 
 const data = {
   title: 'Vue 3',
@@ -56,4 +84,4 @@ proxy.title = 'Angular 10';
 // таким образом, мы нигде message не меняли, то оно изменилось после изменения title
 // Так реализованная реактивность через ловушку Proxy
 
-console.log(proxy);
+// console.log(proxy);
