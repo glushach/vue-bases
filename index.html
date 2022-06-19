@@ -5,12 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Основы Vue</title>
     <link rel="stylesheet" href="theme.css" />
+    <style>
+      [v-cloak] {
+        display: none;
+      }
+    </style>
   </head>
   <body>
   
-  <div class="container" id="app">
+  <div class="container" id="app" v-cloak> <!-- чтобы при перезагрузке страницы она не дергалась, при рендеринге, когда Vue еще не успело присоединиться. Директиву нужно настроить-->
     <div class="card center">
-        <h1>{{ title }}</h1>
+      <div v-html="myHtml"></div> <!-- вставка html в страницу -->
+      <h2 v-text="title"></h2> <!-- альтернативный синтаксис {{ title }}-->
+      <h2 v-once>{{ title }}</h2> <!-- один раз интеполяцию обработаю, но больше ее изменять не буду даже если модель измениться -->
+      <h2 v-pre>{{ title }}</h2> <!-- Чтобы данная интерполяция не компилировалась, а выводилась как есть -->
+      <button
+          class="btn"
+          @click="title = 'Теперь я другое название'">
+          Измменить название
+      </button>
     </div>
   </div>
 
