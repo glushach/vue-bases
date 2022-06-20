@@ -58,6 +58,14 @@ const app = Vue.createApp({
 
 app.mount('#app');
 
+Vue.createApp({
+  data() {
+    return {
+      title: 'Title 2'
+    }
+  }
+}).mount('#app2')
+
 // setTimeout(() => {
 //   app.unmount();
 // }, 2000);
