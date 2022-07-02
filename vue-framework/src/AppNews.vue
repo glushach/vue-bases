@@ -11,6 +11,7 @@
 <script>
   export default {
     // props: ['title'],
+    // emits: ['open-news'],
     props: {
       title: {
         type: String,
@@ -28,6 +29,9 @@
           return value === true || value === false
         }
       }
+    },
+    emits: {
+      'open-news': null
     },
     data() {
       return {
