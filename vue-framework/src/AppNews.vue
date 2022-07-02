@@ -8,10 +8,29 @@
 
 <script>
   export default {
-    props: ['title'],
+    // props: ['title'],
+    props: {
+      title: {
+        type: String,
+        required: true
+      },
+      id: {
+        type: Number,
+        required: true
+      },
+      isOpen: {
+        type: Boolean,
+        required: false,
+        default: false,
+        validator(value) {
+          console.log(value)
+          return value === true || value === false
+        }
+      }
+    },
     data() {
       return {
-        isOpen: false
+        // isOpen: false
       }
     }
   }
