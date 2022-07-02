@@ -2,6 +2,7 @@
   <div class="container pt-1">
     <div class="card">
       <h2>Астуальные новости {{now}}</h2>
+      <span>Открыто: {{ openRate }}</span>
     </div>
     
     <app-news
@@ -10,6 +11,7 @@
         :title="item.title"
         :id="item.id"
         :is-open="item.isOpen"
+        @open-news="openNews"
     ></app-news>
   </div>
 </template>
@@ -22,6 +24,7 @@ export default {
   data() {
     return {
       now: new Date().toLocaleDateString(),
+      openRate: 0,
       news: [
         {
           title: 'Джо Банден победили на выборах в США',
@@ -34,6 +37,11 @@ export default {
           isOpen: false
         }
       ]
+    }
+  },
+  methods: {
+    openNews() {
+      this.openRate++;
     }
   },
   components: {
