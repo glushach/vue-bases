@@ -4,7 +4,17 @@
     <button class="btn" @click="open">
       {{isNewsOpen ? 'Закрыть': 'Отрыть'}}
     </button>
-    <p v-if="isNewsOpen">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur dolore, facere. Amet animi eligendi eos eveniet excepturi, facilis fugit id libero magni omnis provident quae quibusdam reprehenderit saepe, ut, veniam.</p>
+    <button class="btn danger" v-if="wasRead" @click="$emit('unmark', id)">
+      Отметить непрочитаной
+    </button>
+    <div v-if="isNewsOpen">
+      <hr />
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequatur dolore, facere. Amet animi eligendi eos eveniet excepturi,
+        facilis fugit id libero magni omnis provident quae quibusdam reprehenderit saepe, ut, veniam.
+      </p>
+      <button v-if="!wasRead" class="btn primary" @click="mark">Прочесть новость</button>
+    </div>
   </div>
 </template>
 
@@ -13,6 +23,7 @@
     // props: ['title'],
     // emits: ['open-news'],
     props: {
+      wasRead: Boolean,
       title: {
         type: String,
         required: true
@@ -31,7 +42,15 @@
       }
     },
     emits: {
-      'open-news': null
+      'open-news': null,
+      'read-news'(id) {
+        if (id) {
+          return true
+        }
+        console.warn('Нет параметра id для emit read-news')
+        return false
+      },
+      unmark: null
     },
     data() {
       return {
@@ -44,7 +63,14 @@
         if (this.isNewsOpen) {
           this.$emit('open-news')
         }
-      }
+      },
+      mark() {
+        this.isNewsOpen = false
+        this.$emit('read-news', this.id)
+      },
+      // unmark() {
+      //   this.$emit('unmark', this.id)
+      // }
     }
   }
 </script>
