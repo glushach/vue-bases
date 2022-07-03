@@ -30,13 +30,22 @@
         active: 'one' // two
       }
     },
+    mounted() {
+      setTimeout(() => {
+        this.componentName = 'new comp name'
+      }, 1500)
+    },
     computed: {
-      componentName() {
-        // if (this.active === 'one') {
-        //   return 'app-text-one'
-        // }
-        // return 'app-text-two'
+/*      componentName() {
         return 'app-text-' + this.active
+      },*/
+      componentName: {
+        get() {
+          return 'app-text-' + this.active
+        },
+        set(value) {
+          console.log('computedName', value)
+        }
       },
       oneColor() {
         return this.active === 'one' ? 'primary' : ''
