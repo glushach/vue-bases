@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <form class="card">
+    <form class="card" @submit.prevent="submitHandler">
       <h1>Анкета на Vue разработчика!</h1>
       <div class="form-control">
         <label for="name">Как тебя зовут?</label>
@@ -52,7 +52,13 @@
 </template>
 
 <script>
-  export default {}
+  export default {
+    methods: {
+      submitHandler() {
+        console.log('Submit')
+      }
+    }
+  }
 </script>
 
 <style>
