@@ -13,7 +13,9 @@
       >Two</app-button>
     </div>
     
-    <component :is="componentName"></component>
+    <keep-alive>
+      <component :is="componentName"></component>
+    </keep-alive>
   </div>
 </template>
 
