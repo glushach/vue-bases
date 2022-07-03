@@ -1,6 +1,7 @@
 <template>
   <div class="container pt-1">
     <div class="card">
+      <app-async-component></app-async-component>
       <h2>Динамические и асинхронные компоненты</h2>
       
       <app-button
@@ -25,6 +26,7 @@
   import AppButton from "./AppButton";
   import AppTextOne from "./AppTextOne";
   import AppTextTwo from "./AppTextTwo";
+  import AppAsyncComponent from "./AppAsyncComponent";
   export default {
     data() {
       return {
@@ -56,7 +58,7 @@
         return this.active === 'two' ? 'primary' : ''
       },
     },
-    components: { AppButton, AppTextOne, AppTextTwo }
+    components: {AppAsyncComponent, AppButton, AppTextOne, AppTextTwo }
   }
 </script>
 
