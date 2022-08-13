@@ -35,24 +35,31 @@
       <div class="form-checkbox">
         <span class="label">Готов к переезду в Токио?</span>
         <div class="checkbox">
-          <label><input type="radio" name="trip"/> Да</label>
+          <label><input type="radio" v-model="relocate" name="trip" value="yes"/> Да</label>
         </div>
 
         <div class="checkbox">
-          <label><input type="radio" name="trip"/> Нет</label>
+          <label><input type="radio" v-model="relocate" name="trip" value="no"/> Нет</label>
         </div>
       </div>
 
       <div class="form-checkbox">
         <span class="label">Что знаешь во Vue?</span>
         <div class="checkbox">
-          <label><input type="checkbox"/> Vuex</label>
+          <label><input type="checkbox" v-model="skills" name="skills" value="vuex"/> Vuex</label>
         </div>
         <div class="checkbox">
-          <label><input type="checkbox"/> Vue CLI</label>
+          <label><input type="checkbox" v-model="skills" name="skills" value="cli"/> Vue CLI</label>
         </div>
         <div class="checkbox">
-          <label><input type="checkbox"/> Vue Router</label>
+          <label><input type="checkbox" v-model="skills" name="skills" value="router"/> Vue Router</label>
+        </div>
+      </div>
+  
+      <div class="form-checkbox">
+        <span class="label">Правила нашей компании</span>
+        <div class="checkbox">
+          <label><input type="checkbox" v-model="agree"/> С правилами согласен</label>
         </div>
       </div>
 
@@ -67,7 +74,10 @@
       return {
         name: '',
         age: 23,
-        city: 'nsk'
+        city: 'nsk',
+        relocate: null,
+        skills: [],
+        agree: false
       }
     },
     methods: {
@@ -76,6 +86,9 @@
         console.log('Name:', this.name)
         console.log('Age:', this.age)
         console.log('City:', this.city)
+        console.log('To Tokyo:', this.relocate)
+        console.log('Skills:', this.skills)
+        console.log('Agree:', this.agree)
         console.groupEnd()
       }
     }
