@@ -24,7 +24,9 @@
 
 <script>
   
-  import AppPeopleList from "./AppPeopleList";
+import AppPeopleList from "./AppPeopleList";
+import axios from 'axios';
+
 export default {
   data() {
     return {
@@ -51,8 +53,15 @@ export default {
       this.name = '';
       console.log(firebaseData)
     },
-    loadPeople() {
-    
+    async loadPeople() {
+      const {data} = await axios.get('https://vue-with-http-b1149-default-rtdb.firebaseio.com/people.json');
+      this.people = Object.keys(data).map(key => {
+        return {
+          id: key,
+          ...data[key]
+        }
+      })
+     
     }
   },
   components: { AppPeopleList },
