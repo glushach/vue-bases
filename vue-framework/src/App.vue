@@ -34,6 +34,9 @@ export default {
       people: []
     }
   },
+  mounted() {
+    this.loadPeople();
+  },
   methods: {
     async createPerson() {
       // https://vue-with-http-b1149-default-rtdb.firebaseio.com/people.json
@@ -50,8 +53,11 @@ export default {
       });
       
       const firebaseData = await response.json();
+      this.people.push({
+        firstName: this.name,
+        id: firebaseData.name
+      });
       this.name = '';
-      console.log(firebaseData)
     },
     async loadPeople() {
       const {data} = await axios.get('https://vue-with-http-b1149-default-rtdb.firebaseio.com/people.json');
