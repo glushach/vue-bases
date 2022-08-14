@@ -12,15 +12,24 @@
               :disabled="name.length === 0"
       >Создать человека</button>
     </form>
+    
+    <app-people-list
+        :people="people"
+        @load="loadPeople"
+        
+    ></app-people-list>
   </div>
 </template>
 
 
 <script>
+  
+  import AppPeopleList from "./AppPeopleList";
 export default {
   data() {
     return {
-      name: ''
+      name: '',
+      people: []
     }
   },
   methods: {
@@ -41,8 +50,12 @@ export default {
       const firebaseData = await response.json();
       this.name = '';
       console.log(firebaseData)
+    },
+    loadPeople() {
+    
     }
   },
+  components: { AppPeopleList },
 }
 </script>
 
