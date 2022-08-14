@@ -1,7 +1,8 @@
 <template>
   <div v-if="people.length !== 0">
-    <div class="card" v-for="person in people" :key="person.id">
+    <div class="card inline" v-for="person in people" :key="person.id">
       <h3>{{person.firstName}}</h3>
+      <div class="btn danger" @click="$emit('remove', person.id)">Delete</div>
     </div>
   </div>
   <div class="card center" v-else>
@@ -12,11 +13,15 @@
 
 <script>
   export default {
-    emits: ['load'],
+    emits: ['load', 'remove'],
     props: ['people']
   }
 </script>
 
 <style scoped>
-
+  .inline {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 </style>
