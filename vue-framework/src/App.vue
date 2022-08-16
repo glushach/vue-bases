@@ -15,7 +15,10 @@
       >Создать человека</button>
     </form>
     
+    <app-loader v-if="loading"></app-loader>
+    
     <app-people-list
+        v-else
         :people="people"
         @load="loadPeople"
         @remove="removePerson"
@@ -28,6 +31,7 @@
   
 import AppPeopleList from "./AppPeopleList";
 import AppAlert from "./AppAlert";
+import AppLoader from "./AppLoader";
 import axios from 'axios';
 
 export default {
@@ -35,7 +39,8 @@ export default {
     return {
       name: '',
       people: [],
-      alert: null
+      alert: null,
+      loading: false
     }
   },
   mounted() {
@@ -63,28 +68,33 @@ export default {
       });
       this.name = '';
     },
-    async loadPeople() {
+    loadPeople() {
+      this.loading = true;
+      setTimeout(async () => {
       try {
-        const {data} = await axios.get('https://vue-with-http-b1149-default-rtdb.firebaseio.com/people.json');
-        if (!data) {
-          throw new Error('List of people is empty')
-        }
-         this.people = Object.keys(data).map(key => {
-          return {
-            id: key,
-            ...data[key]
+          const {data} = await axios.get('https://vue-with-http-b1149-default-rtdb.firebaseio.com/people.json');
+          if (!data) {
+            throw new Error('List of people is empty')
           }
-        })
-      } catch (e) {
+          this.people = Object.keys(data).map(key => {
+            return {
+              id: key,
+              ...data[key]
+            }
+          })
+          this.loading = false;
+        } catch (e) {
         this.alert = {
           type: 'danger',
           title: "Error",
           text: e.message
         }
+        this.loading = false;
         console.log(e.message)
       }
-      
+      }, 1500)
     },
+    
     async removePerson(id) {
       try {
         const name = this.people.find(person => person.id === id).firstName;
@@ -101,7 +111,7 @@ export default {
       
     }
   },
-  components: { AppPeopleList, AppAlert },
+  components: { AppPeopleList, AppAlert, AppLoader },
 }
 </script>
 
