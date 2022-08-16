@@ -86,8 +86,19 @@ export default {
       
     },
     async removePerson(id) {
-      await axios.delete(`https://vue-with-http-b1149-default-rtdb.firebaseio.com/people/${id}.json`);
-      this.people = this.people.filter(person => person.id !== id)
+      try {
+        const name = this.people.find(person => person.id === id).firstName;
+        await axios.delete(`https://vue-with-http-b1149-default-rtdb.firebaseio.com/people/${id}.json`);
+        this.people = this.people.filter(person => person.id !== id)
+        this.alert = {
+          type: 'primary',
+          title: 'Success!',
+          text: `User ${name} was deleted!`
+        }
+      } catch (e) {
+      
+      }
+      
     }
   },
   components: { AppPeopleList, AppAlert },
