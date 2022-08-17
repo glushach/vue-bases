@@ -3,14 +3,11 @@ export default {
     console.log(el)
     console.log(binging)
 
-    el.style.color = binging.value;
+    el.style[binging.arg] = binging.value;
   },
 
   updated(el, binging) {
-    console.log(el)
-    console.log(binging)
-
-    el.style.color = binging.value;
+    el.style[binging.arg] = binging.value;
   },
 
   unmounted() {
