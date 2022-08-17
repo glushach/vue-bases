@@ -1,31 +1,25 @@
 <template>
   <div class="container">
-    <app-alert
-        v-if="alert"
-        title="Attention!"
-        text="This is the very important message, be careful"
-        type="warning"
-        closable
-        @close="alert = false"
-    ></app-alert>
-    
     <div class="card">
-      <div class="btn primary" @click="toggleAlert">{{alert ? 'Hidden' : 'Display'}} message</div>
+      <h2>Talk about directives</h2>
+      
+      <div class="form-control">
+        <label for="inp">Active by default</label>
+        <input v-focus type="text" id="inp">
+      </div>
     </div>
-    
-    <app-block></app-block>
   </div>
 </template>
 
 
 <script>
-import AppAlert from "./components/AppAlert";
-import AppBlock from "./components/AppBlock";
-import alertMixin from "./alertMixin";
+
+import focusDirective from "./focusDirective";
 
 export default {
-  mixins: [alertMixin],
-  components: { AppAlert, AppBlock }
+  directives: {
+    focus: focusDirective
+  }
 }
 </script>
 
