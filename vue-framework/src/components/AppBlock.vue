@@ -4,36 +4,31 @@
         v-if="alert"
         title="Attention!"
         text="This is the very important message, be careful"
-        type="warning"
-        closable
         @close="alert = false"
     ></app-alert>
     
     <div class="card">
       <div class="btn primary" @click="toggleAlert">{{alert ? 'Hidden' : 'Display'}} message</div>
     </div>
-    
-    <app-block></app-block>
   </div>
 </template>
 
 
 <script>
-import AppAlert from "./components/AppAlert";
-import AppBlock from "./components/AppBlock";
-export default {
-  data() {
-    return {
-      alert: false
-    }
-  },
-  methods: {
-    toggleAlert() {
-      this.alert = !this.alert
-    }
-  },
-  components: { AppAlert, AppBlock }
-}
+  import AppAlert from "./AppAlert";
+  export default {
+    data() {
+      return {
+        alert: false
+      }
+    },
+    methods: {
+      toggleAlert() {
+        this.alert = !this.alert
+      }
+    },
+    components: { AppAlert }
+  }
 </script>
 
 <style scoped>
