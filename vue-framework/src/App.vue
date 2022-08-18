@@ -1,67 +1,29 @@
 <template>
-  <div class="container pt-1">
-    <div class="card">
-      <app-async-component></app-async-component>
-      <h2>Динамические и асинхронные компоненты</h2>
-      
-      <app-button
-          ref="myBtn"
-          :color="oneColor"
-          @action="active = 'one'"
-      >One</app-button>
-      <app-button
-          :color="twoColor"
-          @action="active = 'two'"
-      >Two</app-button>
-    </div>
-    
-    <keep-alive>
-      <component :is="componentName"></component>
-    </keep-alive>
+  <the-navbar></the-navbar>
+  <div class="container with-nav">
+    <login></login>
   </div>
 </template>
 
-
 <script>
-  import AppButton from "./AppButton";
-  import AppTextOne from "./AppTextOne";
-  import AppTextTwo from "./AppTextTwo";
-  import AppAsyncComponent from "./AppAsyncComponent";
-  export default {
-    data() {
-      return {
-        active: 'one' // two
-      }
-    },
-    mounted() {
-      // setTimeout(() => {
-      //   this.componentName = 'new comp name'
-      // }, 1500)
-      this.$refs.myBtn.btnLog()
-    },
-    computed: {
-/*      componentName() {
-        return 'app-text-' + this.active
-      },*/
-      componentName: {
-        get() {
-          return 'app-text-' + this.active
-        },
-        set(value) {
-          console.log('computedName', value)
-        }
-      },
-      oneColor() {
-        return this.active === 'one' ? 'primary' : ''
-      },
-      twoColor() {
-        return this.active === 'two' ? 'primary' : ''
-      },
-    },
-    components: {AppAsyncComponent, AppButton, AppTextOne, AppTextTwo }
+import TheNavbar from './components/TheNavbar'
+import Login from './views/Login'
+
+export default {
+  components: {TheNavbar, Login},
+  provide() {
+    return {
+      emails: [
+        {id: 1, theme: 'Купил себе PlayStation 5'},
+        {id: 2, theme: 'Выучил Vue Router'},
+        {id: 3, theme: 'Хочу изучить весь Vue'},
+        {id: 4, theme: 'А следующий блок про Vuex!'},
+        {id: 5, theme: 'А что там на счет Vue Hooks?'}
+      ]
+    }
   }
+}
 </script>
 
-<style scoped>
-
+<style>
 </style>
