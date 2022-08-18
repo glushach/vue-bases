@@ -5,6 +5,20 @@ import translatePlugins from "./translatePlugins";
 
 const app = createApp(App)
 
-app.use(translatePlugins)
+const ua = {
+  app: {
+    title: 'Як працюют плагіни у Vue js',
+    changeBtn: 'Змінити мову'
+  }
+}
+
+const en = {
+  app: {
+    title: 'How work plugin on Vue js',
+    changeBtn: 'Toggle language'
+  }
+}
+
+app.use(translatePlugins, {ua, en})
 
 app.mount('#app');
