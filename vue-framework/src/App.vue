@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <div class="card">
-      <h2 v-color:[type]="myColor">Talk about directives</h2>
+    <div class="card" v-if="show">
+      <h2 v-color:[type].blink.hover="myColor">Talk about directives</h2>
       
       <div class="form-control">
         <label for="inp">Active by default</label>
@@ -26,9 +26,15 @@ export default {
   data() {
     return {
       myColor: 'darkred',
-      type: 'color'
+      type: 'color',
+      show: true
     }
   },
+/*  mounted() {
+    setTimeout(() => {
+      this.show = false;
+    }, 2000);
+  },*/
   directives: {
     focus: focusDirective,
     color: colorDirective
