@@ -20,10 +20,14 @@ import TheNavbar from './TheNavbar'
 
 export default {
   components: {TheNavbar},
-  computed: mapGetters(['counter', 'doubleCounter', 'uppercaseTitle']),
+  // computed: mapGetters(['counter', 'doubleCounter', 'uppercaseTitle']),
+  computed: {
+    ...mapGetters(['uppercaseTitle']),
+    ...mapGetters('count', ['counter', 'doubleCounter'])
+  },
   methods: {
-    ...mapMutations({add: 'increment'}),
-    ...mapActions(['incrementAsync']),
+    ...mapMutations({add: 'count/increment'}),
+    ...mapActions('count', ['incrementAsync']),
   }
 }
 </script>
