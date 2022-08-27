@@ -22,7 +22,7 @@ export default {
   methods: {
     increment() {
       // this.counter++;
-      this.$store.state.counter++
+      this.$store.commit('increment')
     }
   }
 }
