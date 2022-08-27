@@ -1,67 +1,15 @@
 <template>
-  <div class="container pt-1">
+  <div class="container with-nav">
     <div class="card">
-      <app-async-component></app-async-component>
-      <h2>Динамические и асинхронные компоненты</h2>
-      
-      <app-button
-          ref="myBtn"
-          :color="oneColor"
-          @action="active = 'one'"
-      >One</app-button>
-      <app-button
-          :color="twoColor"
-          @action="active = 'two'"
-      >Two</app-button>
+      <h1>Про Vuex</h1>
+      <h2>Счетчик 0</h2>
     </div>
-    
-    <keep-alive>
-      <component :is="componentName"></component>
-    </keep-alive>
   </div>
 </template>
 
-
 <script>
-  import AppButton from "./AppButton";
-  import AppTextOne from "./AppTextOne";
-  import AppTextTwo from "./AppTextTwo";
-  import AppAsyncComponent from "./AppAsyncComponent";
-  export default {
-    data() {
-      return {
-        active: 'one' // two
-      }
-    },
-    mounted() {
-      // setTimeout(() => {
-      //   this.componentName = 'new comp name'
-      // }, 1500)
-      this.$refs.myBtn.btnLog()
-    },
-    computed: {
-/*      componentName() {
-        return 'app-text-' + this.active
-      },*/
-      componentName: {
-        get() {
-          return 'app-text-' + this.active
-        },
-        set(value) {
-          console.log('computedName', value)
-        }
-      },
-      oneColor() {
-        return this.active === 'one' ? 'primary' : ''
-      },
-      twoColor() {
-        return this.active === 'two' ? 'primary' : ''
-      },
-    },
-    components: {AppAsyncComponent, AppButton, AppTextOne, AppTextTwo }
-  }
+import TheNavbar from './TheNavbar'
+export default {
+  components: {TheNavbar}
+}
 </script>
-
-<style scoped>
-
-</style>
