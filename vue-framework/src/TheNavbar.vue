@@ -1,6 +1,6 @@
 <template>
   <header class="navbar">
-    Counter {{counter}}
+    <strong>Counter {{counter}}</strong>
     <button class="btn primary" @click="add">Add 5</button>
   </header>
 </template>
@@ -9,7 +9,7 @@
   export default {
     computed: {
       counter() {
-        return this.$store.state.counter;
+        return this.$store.getters.counter;
       }
     },
     methods: {
