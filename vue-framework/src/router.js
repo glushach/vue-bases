@@ -16,7 +16,7 @@ const route = createRouter({
     {path: '/dashboard', component: Dashboard, name: 'home', beforeEnter() {
         console.log('beforeEnter')
       }},
-    {path: '/mail', component: Mail, children: [
+    {path: '/mail', component: Mail, name: 'email', children: [
         {path: ':id?', component: AppEmailBody, props: true}
       ]},
     {path: '/:notFound(.*)', component: NotFound}
