@@ -1,7 +1,7 @@
 <template>
   <header class="navbar">
     <strong>Counter {{counter}}</strong>
-    <button class="btn primary" @click="add">Add 5</button>
+    <button class="btn" @click="add">Add 5</button>
   </header>
 </template>
 
