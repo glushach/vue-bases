@@ -2,7 +2,7 @@
   <the-navbar></the-navbar>
   <div class="container with-nav">
     <div class="card">
-      <h1>Про Vuex</h1>
+      <h1>{{uppercaseTitle}}</h1>
       <h2>Счетчик {{counter}} ({{doubleCounter}})</h2>
       <button class="btn primary" @click="add">Add</button>
       <button class="btn danger" @click="incrementAsync({
@@ -20,7 +20,7 @@ import TheNavbar from './TheNavbar'
 
 export default {
   components: {TheNavbar},
-  computed: mapGetters(['counter', 'doubleCounter']),
+  computed: mapGetters(['counter', 'doubleCounter', 'uppercaseTitle']),
   methods: {
     ...mapMutations({add: 'increment'}),
     ...mapActions(['incrementAsync']),
