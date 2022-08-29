@@ -30,7 +30,14 @@
     isReactive,
     computed,
     watch,
-    provide
+    provide,
+    onBeforeMount,
+    onMounted,
+    onBeforeUpdate,
+    onUpdated,
+    onBeforeUnmount,
+    onUnmounted,
+    
   } from 'vue';
 
   import FrameforkInfo from "./FrameforkInfo";
@@ -42,16 +49,32 @@
       const textInput = ref(null)
       const firstName = ref('')
 
-      // const doubleVersion = computed(() => {
-      //   return version.value * 2
-      // })
+      console.log('created')
       
-      // watch([doubleVersion, name], (newValues, oldValues) => {
-      //   console.log('new version', newValues[0])
-      //   console.log('new', newValues[1])
-      //   console.log('old version', oldValues[0])
-      //   console.log('old name', oldValues[1])
-      // });
+      onBeforeMount(() => {
+        console.log('onBeforeMount')
+      });
+      
+      onMounted(() => {
+        console.log('onMounted')
+      })
+      
+      onBeforeUpdate(() => {
+        console.log('onBeforeUpdate')
+      })
+      
+      onUpdated(() => {
+        console.log('onUpdated')
+      })
+      
+      onBeforeUnmount(() => {
+        console.log('onBeforeUnmount')
+      })
+      
+      onUnmounted(() => {
+        console.log('onUnmounted')
+      })
+      
       watch(firstName, (newV, oldV) => {
         console.log(newV)
         // console.log(oldV)
