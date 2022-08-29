@@ -13,7 +13,15 @@
 </template>
 
 <script>
-  import {ref, reactive, toRefs, isRef, isReactive, computed} from 'vue';
+  import {
+    ref,
+    reactive,
+    toRefs,
+    isRef,
+    isReactive,
+    computed,
+    watch
+  } from 'vue';
 
   export default {
     setup() {
@@ -23,17 +31,20 @@
       // console.log(isRef(name)) // true
       // console.log(isRef(version.value)) // false
 
-      const framework = reactive({
-        name: 'Vue',
-        version: 3
-      })
-      
       const doubleVersion = computed(() => {
         return version.value * 2
       })
+      
+      watch([doubleVersion, name], (newValues, oldValues) => {
+        console.log('new version', newValues[0])
+        console.log('new', newValues[1])
+        console.log('old version', oldValues[0])
+        console.log('old name', oldValues[1])
+      });
+      
 
-      console.log(isRef(doubleVersion))
-      console.log(doubleVersion.value)
+      // console.log(isRef(doubleVersion))
+      // console.log(doubleVersion.value)
 
       // console.log(isReactive(framework)) // true
       // console.log(isReactive(framework.name)) // false
