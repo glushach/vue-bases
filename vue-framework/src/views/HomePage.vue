@@ -1,4 +1,11 @@
 <template>
+  <app-alert
+      v-if="alert"
+      title="Working with Composition"
+      type="danger"
+      @close="close"
+  >
+  </app-alert>
   <div class="card">
     <h1>Vue Composition Api </h1>
     <small>data, methods, computed, watch</small>
@@ -7,6 +14,7 @@
     </div>
     
     <button class="btn" @click="changeInfo">Изменить</button>
+    <button class="btn danger" @click="toggle">Alert</button>
     
     <FrameforkInfo
         @change-version="changeVersion"
@@ -21,6 +29,7 @@
 
 <script>
   import FrameforkInfo from "../FrameforkInfo";
+  import AppAlert from "./AppAlert";
   import {
     onBeforeMount,
     onBeforeUnmount,
@@ -39,8 +48,10 @@ export default {
     const version = ref(3)
     const textInput = ref(null)
     const firstName = ref('')
+    const alert = ref(false)
 
-    console.log('created')
+    const toggle = () => alert.value = !alert.value;
+    const close = () => alert.value = false;
 
     onBeforeMount(() => {
       console.log('onBeforeMount')
@@ -87,10 +98,13 @@ export default {
     return {
       changeInfo,
       firstName,
-      changeVersion
+      changeVersion,
+      alert,
+      toggle,
+      close
     }
   },
-  components: {FrameforkInfo}
+  components: {FrameforkInfo, AppAlert}
 }
 </script>
 
