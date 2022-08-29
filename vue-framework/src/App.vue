@@ -7,6 +7,10 @@
       <p>Название: <strong>{{ name }}</strong></p>
       <p>Версия: <strong>{{ version }} ({{doubleVersion}})</strong></p>
       
+      <div class="form-control">
+        <input type="text" ref="textInput">
+      </div>
+      
       <button class="btn" @click="changeInfo">Изменить</button>
     </div>
   </div>
@@ -27,9 +31,7 @@
     setup() {
       const name = ref('VueJS')
       const version = ref(3)
-
-      // console.log(isRef(name)) // true
-      // console.log(isRef(version.value)) // false
+      const textInput = ref(null)
 
       const doubleVersion = computed(() => {
         return version.value * 2
@@ -41,26 +43,20 @@
         console.log('old version', oldValues[0])
         console.log('old name', oldValues[1])
       });
-      
-
-      // console.log(isRef(doubleVersion))
-      // console.log(doubleVersion.value)
-
-      // console.log(isReactive(framework)) // true
-      // console.log(isReactive(framework.name)) // false
 
       function changeInfo() {
         name.value = 'Vue JS!'
         version.value = 42
-        // framework.name = 'Vue JS!'
-        // framework.version = 42
+
+        console.log(textInput.value.value)
       }
 
       return {
         name,
         version,
         changeInfo,
-        doubleVersion
+        doubleVersion,
+        textInput
       }
     },
     // data() {
