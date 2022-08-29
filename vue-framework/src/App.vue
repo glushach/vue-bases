@@ -10,8 +10,6 @@
       <button class="btn" @click="changeInfo">Изменить</button>
       
       <FrameforkInfo
-          :name="name"
-          :version="version"
           @change-version="changeVersion"
           class="test-from-app"
       >
@@ -31,7 +29,8 @@
     isRef,
     isReactive,
     computed,
-    watch
+    watch,
+    provide
   } from 'vue';
 
   import FrameforkInfo from "./FrameforkInfo";
@@ -67,9 +66,11 @@
       function changeVersion(num) {
         version.value = num;
       }
+      
+      provide('name', name)
+      provide('version', version)
 
       return {
-        name, version,
         changeInfo,
         firstName,
         changeVersion
