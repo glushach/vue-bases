@@ -1,11 +1,12 @@
 <template>
-  <app-alert
+<!--  <app-alert
       v-if="alert"
       title="Working with Composition"
       type="danger"
       @close="close"
   >
-  </app-alert>
+  </app-alert>-->
+  
   <div class="card">
     <h1>Vue Composition Api </h1>
     <small>data, methods, computed, watch</small>
@@ -14,7 +15,6 @@
     </div>
     
     <button class="btn" @click="changeInfo">Изменить</button>
-    <button class="btn danger" @click="toggle">Alert</button>
     
     <FrameforkInfo
         @change-version="changeVersion"
@@ -41,6 +41,7 @@
     ref,
     watch
   } from "vue";
+  import {useAlert} from "../use/alert";
   
 export default {
   setup() {
@@ -48,10 +49,6 @@ export default {
     const version = ref(3)
     const textInput = ref(null)
     const firstName = ref('')
-    const alert = ref(false)
-
-    const toggle = () => alert.value = !alert.value;
-    const close = () => alert.value = false;
 
     onBeforeMount(() => {
       console.log('onBeforeMount')
@@ -99,9 +96,6 @@ export default {
       changeInfo,
       firstName,
       changeVersion,
-      alert,
-      toggle,
-      close
     }
   },
   components: {FrameforkInfo, AppAlert}

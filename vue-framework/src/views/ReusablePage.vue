@@ -22,17 +22,16 @@
   
 export default {
   setup() {
-    const { alert, close, toggle} = useAlert();
+    // const { alert, toggle, close } = useAlert();
+    
     const router = useRouter();
     const route = useRoute();
 
     const navigate = () => router.push('/');
     
     return {
-      alert,
-      toggle,
       navigate,
-      close
+      ...useAlert(true),
     }
   },
   components: {AppAlert}
