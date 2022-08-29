@@ -3,16 +3,13 @@
     <div class="card">
       <h1>Vue Composition Api </h1>
       <small>data, methods, computed, watch</small>
-      <hr>
-      <p>Название: <strong>{{ name }}</strong></p>
-      <p>Версия: <strong>{{ version }} ({{doubleVersion}})</strong></p>
-      
       <div class="form-control">
-<!--        <input type="text" ref="textInput">-->
         <input type="text" v-model="firstName">
       </div>
       
       <button class="btn" @click="changeInfo">Изменить</button>
+      
+      <FrameforkInfo :name="name" :version="version"/>
     </div>
   </div>
 </template>
@@ -28,6 +25,8 @@
     watch
   } from 'vue';
 
+  import FrameforkInfo from "./FrameforkInfo";
+  
   export default {
     setup() {
       const name = ref('VueJS')
@@ -35,9 +34,9 @@
       const textInput = ref(null)
       const firstName = ref('')
 
-      const doubleVersion = computed(() => {
-        return version.value * 2
-      })
+      // const doubleVersion = computed(() => {
+      //   return version.value * 2
+      // })
       
       // watch([doubleVersion, name], (newValues, oldValues) => {
       //   console.log('new version', newValues[0])
@@ -57,25 +56,11 @@
       }
 
       return {
-        name,
-        version,
+        name, version,
         changeInfo,
-        doubleVersion,
-        textInput,
         firstName
       }
     },
-    // data() {
-    //   return {
-    //     name: 'VueJS',
-    //     version: 3
-    //   }
-    // },
-    // methods: {
-    //   changeInfo() {
-    //     this.name = 'Vue JS!'
-    //     this.version = 4
-    //   }
-    // }
+    components: {FrameforkInfo}
   }
 </script>
