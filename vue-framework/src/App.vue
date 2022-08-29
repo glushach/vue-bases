@@ -9,7 +9,11 @@
       
       <button class="btn" @click="changeInfo">Изменить</button>
       
-      <FrameforkInfo :name="name" :version="version"/>
+      <FrameforkInfo
+          :name="name"
+          :version="version"
+          @change-version="changeVersion"
+      />
     </div>
   </div>
 </template>
@@ -54,11 +58,16 @@
         version.value = 42
 
       }
+      
+      function changeVersion(num) {
+        version.value = num;
+      }
 
       return {
         name, version,
         changeInfo,
-        firstName
+        firstName,
+        changeVersion
       }
     },
     components: {FrameforkInfo}

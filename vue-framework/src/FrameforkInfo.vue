@@ -2,15 +2,24 @@
   <div class="card">
     <p>Название: <strong>{{ name }}</strong></p>
     <p>Версия: <strong>{{ version }} ({{doubleVersion}})</strong></p>
+  
+    <button class="btn warning" @click="changeToThree">Change on 3 version</button>
   </div>
 </template>
 
 <script>
 import {computed} from 'vue';
 export default {
-props: ['name', 'version'],
-  setup(props) {
+  props: ['name', 'version'],
+  emits: ['change-version'],
+  setup(props, context) {
+  
+    function change() {
+      context.emit('change-version', 3)
+    }
+  
     return {
+      changeToThree: change,
       doubleVersion: computed(() => props.version * 2)
     }
   }
