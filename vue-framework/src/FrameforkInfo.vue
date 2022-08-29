@@ -13,6 +13,8 @@ export default {
   props: ['name', 'version'],
   emits: ['change-version'],
   setup(props, context) {
+    
+    console.log(context)
   
     function change() {
       context.emit('change-version', 3)

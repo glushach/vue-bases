@@ -13,7 +13,12 @@
           :name="name"
           :version="version"
           @change-version="changeVersion"
-      />
+          class="test-from-app"
+      >
+        <template>
+          <p>This is footer</p>
+        </template>
+      </FrameforkInfo>
     </div>
   </div>
 </template>
