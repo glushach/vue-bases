@@ -1,4 +1,4 @@
-# 06-vue-components
+# 13-vue-ts-prep
 
 ## Project setup
 ```
